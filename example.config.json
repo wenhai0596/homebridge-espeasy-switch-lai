@@ -14,8 +14,8 @@
 			"name": "Switch",
 			"type": "switch",
 			"ip": "espip",
-      "doorRelayPin": 4,
-      "duration":1
+                        "doorRelayPin": 4,
+                 
 		}
 	]
 }
