@@ -1,5 +1,5 @@
 var request = require('request');
-let Service, Characteristic;
+var Service, Characteristic;
 module.exports = function(homebridge) {
     Service = homebridge.hap.Service;
     Characteristic = homebridge.hap.Characteristic;
@@ -11,7 +11,7 @@ function ESPEasySwitch(log, config) {
     this.name = config.name || 'ESPEasySwitch';
     this.type = config.type || 'switch';
     this.ip = config.ip;
-    this.doorRelayPin = this.relayNumberToGPIO(config.doorRelayPin);
+    this.doorRelayPin = config.doorRelayPin;
     this.pulse = config.pulse || false;
     this.action = config.action || 'off';
     this.duration = config.duration || 60;
@@ -46,7 +46,6 @@ function ESPEasySwitch(log, config) {
 ESPEasySwitch.prototype = {
     getPowerState: function(callback) {
         var log = this.log;
-
 		if (this.pulse) {
 			callback(null, false);
 			return;
@@ -58,7 +57,6 @@ ESPEasySwitch.prototype = {
         }, function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 var json = JSON.parse(body);
-
                 log.debug('State: ' + json.state);
                 callback(null, (json.state == 1));
                 return;
@@ -112,18 +110,5 @@ ESPEasySwitch.prototype = {
     getServices: function() {
         return [this.serviceInfo, this.service];
     }
-  relayNumberToGPIO(relay) {
-    switch (relay) {
-    case 1:
-      return 12;
-    case 2:
-      return 5;
-    case 3:
-      return 4;
-    case 4:
-      return 15;
-    default:
-      return 12;
-    }
-  }
+  
 };
