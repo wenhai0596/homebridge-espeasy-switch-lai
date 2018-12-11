@@ -1,0 +1,18 @@
+{
+  "name": "homebridge-espeasy-switch-lai",
+  "version": "0.0.1",
+  "description": "ESPEasy basic plugin for Homebridge.",
+  "license": "MIT",
+  "keywords": [
+    "homebridge-plugin", "espeasy", "switch"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wenhai0596/homebridge-espeasy-switch-lai.git"
+  },
+  "engines": {
+    "node": ">=0.12.0",
+    "homebridge": ">=0.2.0",
+    "request": ">=2.81.0"
+  }
+}
