@@ -10,11 +10,11 @@
 
 "accessories": [
 		{
-			"accessory": "homebridge-espeasy-switch-la",
+			"accessory": "homebridge-espeasy-switch-lai",
 			"name": "Switch",
 			"type": "switch",
 			"ip": "espip",
-                        "doorRelayPin": 4,
+                        "doorRelayPin": 12
                  
 		}
 	]
