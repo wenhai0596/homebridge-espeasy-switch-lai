@@ -4,9 +4,9 @@ module.exports = function(homebridge) {
     Service = homebridge.hap.Service;
     Characteristic = homebridge.hap.Characteristic;
 
-    homebridge.registerAccessory('homebridge-espeasy-switch-lai', 'ESPEasySwitchL', ESPEasySwitch);
+    homebridge.registerAccessory('homebridge-espeasy-switch-lai', 'ESPEasySwitchL', ESPEasySwitchL);
 }
-function ESPEasySwitch(log, config) {
+function ESPEasySwitchL(log, config) {
     this.log = log;
     this.name = config.name || 'ESPEasySwitch';
     this.type = config.type || 'switch';
@@ -43,7 +43,7 @@ function ESPEasySwitch(log, config) {
         .on('set', this.setPowerState.bind(this));
 }
 
-ESPEasySwitch.prototype = {
+ESPEasySwitchL.prototype = {
     getPowerState: function(callback) {
         var log = this.log;
 		if (this.pulse) {
