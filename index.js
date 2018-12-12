@@ -14,8 +14,6 @@ function ESPEasy_Lai(log, config) {
     this.type = config.type || 'switch';
     this.ip = config.ip;
     this.doorRelayPin = config.doorRelayPin;
-//     this.pulse = config.pulse || false;
-//     this.action = config.action || 'off';
     this.duration = config.duration || false;
     
     if (!this.ip) {
