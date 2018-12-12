@@ -14,9 +14,9 @@ function ESPEasy_Lai(log, config) {
     this.type = config.type || 'switch';
     this.ip = config.ip;
     this.doorRelayPin = config.doorRelayPin;
-    this.pulse = config.pulse || false;
-    this.action = config.action || 'off';
-    this.duration = config.duration || 60;
+//     this.pulse = config.pulse || false;
+//     this.action = config.action || 'off';
+    this.duration = config.duration || false;
     
     if (!this.ip) {
         throw new Error('Your must provide IP address of the switch');
@@ -48,14 +48,10 @@ function ESPEasy_Lai(log, config) {
 ESPEasy_Lai.prototype = {
     getPowerS: function(callback) {
         var log = this.log;
-		if (this.pulse) {
-			callback(null, false);
-			return;
-		}
 
         request.get({
             url: 'http://' + this.ip + '/control?cmd=status,gpio,' + this.doorRelayPin,
-            timeout: 12000
+            timeout: 1200
         }, function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 var json = JSON.parse(body);
@@ -74,8 +70,8 @@ ESPEasy_Lai.prototype = {
         var log = this.log;
 		var command = '/control?cmd=GPIO,' + this.doorRelayPin + ((state) ? 1: 0);
 
-		if (this.pulse && state) {
-			command = '/control?cmd=Pulse,12,' + ((this.action == 'on') ? 1 : 0) + ',' + (parseInt(this.duration) * 1000);
+		if (this.duration && state) {
+			command = '/control?cmd=Pulse,12,1,' + (parseInt(this.duration) * 1000);
 		}
 
         request.get({
@@ -94,13 +90,10 @@ ESPEasy_Lai.prototype = {
             log.debug('Error setting device control. (%s)', error);
         });
 
-		if (this.pulse) {
-			var that = this;
-			
 			setTimeout(function() {
-				that.service.getCharacteristic(Characteristic.On).updateValue(false);
+				this.service.getCharacteristic(Characteristic.On).updateValue(false);
 			}, 2000);
-		}
+		
 
         callback();
     },
