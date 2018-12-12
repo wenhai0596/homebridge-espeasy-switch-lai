@@ -54,7 +54,7 @@ ESPEasy_Lai.prototype = {
 		}
 
         request.get({
-            url: 'http://' + this.ip + '/control?cmd=status,' + this.doorRelayPin,
+            url: 'http://' + this.ip + '/control?cmd=status,gpio,' + this.doorRelayPin,
             timeout: 12000
         }, function(error, response, body) {
             if (!error && response.statusCode == 200) {
