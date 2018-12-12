@@ -10,10 +10,10 @@
 
 "accessories": [
 		{
-			"accessory": " ESPEasySwitch",
+			"accessory": "ESPEasySwitch",
 			"name": "Switch",
 			"type": "switch",
-			"ip": "espip",
+			"ip": "192.168.2.103",
                         "doorRelayPin": 12
                  
 		}
