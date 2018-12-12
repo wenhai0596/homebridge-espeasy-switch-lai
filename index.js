@@ -35,7 +35,7 @@ function ESPEasyLai(log, config) {
     this.serviceInfo
         .setCharacteristic(Characteristic.Manufacturer, 'Lai')
         .setCharacteristic(Characteristic.Model, 'espessy')
-        .setCharacteristic(Characteristic.SerialNumber, randomNum(7));
+        .setCharacteristic(Characteristic.SerialNumber, 'abcd-1234-5678');
 
     this.service
         .getCharacteristic(Characteristic.On)
@@ -53,7 +53,7 @@ ESPEasyLai.prototype = {
 
         request.get({
             url: 'http://' + this.ip + '/control?cmd=status,' + this.doorRelayPin,
-            timeout: 12000
+            timeout: 1200
         }, function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 var json = JSON.parse(body);
@@ -110,13 +110,4 @@ ESPEasyLai.prototype = {
     getServices: function() {
         return [this.serviceInfo, this.service];
     }
-	
-    function randomNum(n){
-             var res = "";
-             for(var i=0;i<n;i++){
-               res += Math.floor(Math.random()*10);
-             }
-     return res;
-    }
-  
 };
