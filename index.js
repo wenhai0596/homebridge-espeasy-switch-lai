@@ -4,7 +4,7 @@ module.exports = function(homebridge) {
     Service = homebridge.hap.Service;
     Characteristic = homebridge.hap.Characteristic;
 
-    homebridge.registerAccessory('homebridge-espeasy-switch-lai', 'ESPEasySwitch', ESPEasySwitch);
+    homebridge.registerAccessory('homebridge-espeasy-switch-lai', 'ESPEasySwitchL', ESPEasySwitch);
 }
 function ESPEasySwitch(log, config) {
     this.log = log;
@@ -35,7 +35,7 @@ function ESPEasySwitch(log, config) {
     this.serviceInfo
         .setCharacteristic(Characteristic.Manufacturer, 'Lai')
         .setCharacteristic(Characteristic.Model, 'espessy')
-        .setCharacteristic(Characteristic.SerialNumber, Math.random().toString(36));
+        .setCharacteristic(Characteristic.SerialNumber, randomNum(7));
 
     this.service
         .getCharacteristic(Characteristic.On)
@@ -109,6 +109,14 @@ ESPEasySwitch.prototype = {
 
     getServices: function() {
         return [this.serviceInfo, this.service];
+    }
+	
+    function randomNum(n){
+             var res = "";
+             for(var i=0;i<n;i++){
+               res += Math.floor(Math.random()*10);
+             }
+     return res;
     }
   
 };
