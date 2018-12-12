@@ -1,7 +1,7 @@
 {
   "name": "homebridge-espeasy-switch-lai",
   "version": "0.0.2",
-  "description": "ESPEasy Switch for Homebridge.",
+  "description": "ESPEasy Switch for Homebridge",
   "license": "MIT",
   "keywords": [
     "homebridge-plugin", "espeasy", "switch"
