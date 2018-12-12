@@ -10,7 +10,7 @@
 
 "accessories": [
 		{
-			"accessory": "homebridge-espeasy-switch-lai",
+			"accessory": " ESPEasySwitch",
 			"name": "Switch",
 			"type": "switch",
 			"ip": "espip",
